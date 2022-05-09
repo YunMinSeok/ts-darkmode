@@ -30,5 +30,8 @@
     "test:dist": "mocha -r ts-node/register test/dist/**/*.spec.ts",
     "test:lint": "eslint --fix",
     "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "typescript": "^4.6.4"
   }
 }
