@@ -1,0 +1,34 @@
+{
+  "name": "darkmodejs",
+  "version": "1.0.0",
+  "description": "The darkmode package",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YunMinSeok/darkmodejs.git"
+  },
+  "keywords": [
+    "darkmode",
+    "dark",
+    "theme"
+  ],
+  "author": "choyeseul,yunminseok",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YunMinSeok/darkmodejs/issues",
+    "email": "ykmvm147@naver.com"
+  },
+  "homepage": "https://github.com/YunMinSeok/darkmodejs#readme",
+  "main": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npm run build:typescript && npm run build:babel",
+    "build:typescript": "tsc",
+    "build:babel": "babel lib --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
+    "test": "npm run build && npm run test:lint && npm run test:lib && npm run test:express && npm run test:dist",
+    "test:lib": "mocha -r ts-node/register test/lib/**/*.spec.ts",
+    "test:express": "mocha -r ts-node/register test/express/**/*.spec.ts",
+    "test:dist": "mocha -r ts-node/register test/dist/**/*.spec.ts",
+    "test:lint": "eslint --fix",
+    "prepublishOnly": "npm run build"
+  }
+}
