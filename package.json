@@ -1,32 +1,32 @@
 {
-  "name": "@jyms/darkmodejs",
+  "name": "@jyms/darkmode",
   "version": "1.0.0",
   "description": "A tiny library for handling dark mode on browsers.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YunMinSeok/darkmodejs.git"
+    "url": "git+git@github.com:YunMinSeok/darkmodejs.git"
   },
   "keywords": [
-    "darkmode",
+    "node",
     "dark",
+    "mode",
     "theme",
-    "nightmode",
-    "dark-mode",
-    "eye-care",
-    "typeScript"
+    "typescript"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/YunMinSeok/darkmodejs/issues",
-    "email": "ykmvm147@naver.com"
+    "url": "git+git@github.com:YunMinSeok/darkmodejs.git/issues"
   },
-  "homepage": "https://github.com/YunMinSeok/darkmodejs#readme",
+  "homepage": "git+git@github.com:YunMinSeok/darkmodejs.git#readme",
   "main": "dist/index.d.ts",
-  "types": "dist/index.d.ts",
+  "author": "yunminseok , choyeseul",
   "scripts": {
     "build": "tsc",
     "test": "mocha --reporter spec",
     "prepare": "rm -rf dist && tsc"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "pluralize": "^8.0.0",
