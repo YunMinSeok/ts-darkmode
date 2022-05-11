@@ -1,5 +1,5 @@
 {
-  "name": "@jyms/darkmode",
+  "name": "@ysms/ts-darkmode",
   "version": "1.0.0",
   "description": "A tiny library for handling dark mode on browsers.",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "homepage": "git+git@github.com:YunMinSeok/darkmodejs.git#readme",
   "main": "dist/index.d.ts",
-  "author": "yunminseok , choyeseul",
+  "author": "yunminseok , kimjelly",
   "scripts": {
     "build": "tsc",
     "test": "mocha --reporter spec",
