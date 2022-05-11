@@ -1,9 +1,6 @@
-import * as pluralize from "pluralize";
-
-export function getPlural(str: any): string {
-  return pluralize.plural(str);
-}
-
-export function getSingular(str: string): string {
-  return pluralize.singular(str);
+export function isDark(): boolean {
+  return (
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+  );
 }
