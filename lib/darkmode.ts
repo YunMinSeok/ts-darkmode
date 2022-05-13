@@ -1,4 +1,4 @@
-type defaultOptions = {
+type optionsType = {
   bottom: string;
   right: string;
   left: string;
@@ -7,11 +7,29 @@ type defaultOptions = {
   backgroundColor: string;
   buttonColorDark: string;
   buttonColorLight: string;
-  label: string;
+  content: string;
   saveInCookies: boolean;
-  autoMatchOsTheme: boolean;
 };
 
 export default class DarkMode {
-  constructor(options: defaultOptions) {}
+  constructor(options: optionsType) {
+    const defaultOptions = {
+      bottom: "30px",
+      right: "30px",
+      left: "unset",
+      time: "0.3s",
+      mixColor: "#fff",
+      backgroundColor: "#fff",
+      buttonColorDark: "#141414",
+      buttonColorLight: "#fff",
+      content: "",
+      saveInCookies: true,
+    };
+
+    options = { ...defaultOptions, ...options };
+
+    const css = `
+      
+    `;
+  }
 }
