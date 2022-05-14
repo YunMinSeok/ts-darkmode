@@ -9,6 +9,8 @@ type optionsType = {
   content: string;
   saveInCookies: boolean;
   animation: string;
+  buttonWidth: string;
+  buttonHeight: string;
 };
 
 export default class DarkMode {
@@ -18,32 +20,28 @@ export default class DarkMode {
       right: "30px",
       left: "unset",
       transitionTime: "0.3s",
-      backgroundColor: "#fff",
+      backgroundColor: "#121212",
       buttonDarkColor: "#141414",
       buttonLightColor: "#fff",
       content: "",
       saveInCookies: true,
       animation: "scale(100)",
+      buttonWidth: "3rem",
+      buttonHeight: "3rem",
     };
 
     options = { ...defaultOptions, ...options };
 
     const css = `
-      .darkmode-layer {
+      .darkmode-wrap {
         background: ${options.backgroundColor};
         transition: all ${options.transitionTime} ease;
-      }
-      .darkmode-layer--simple {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
         transform: ${options.animation};
       }
       .darkmode-toggle {
         background: ${options.buttonDarkColor};
-        width: 3rem;
-        height: 3rem;
+        width: ${options.buttonWidth};
+        height: ${options.buttonHeight};
         position: fixed;
         border-radius: 50%;
         border:none;
@@ -61,7 +59,21 @@ export default class DarkMode {
       }
     `;
 
-    const layer = document.createElement("div");
     const button = document.createElement("button");
+
+    const darkmodeActivated =
+      window.localStorage.getItem("darkmode") === "true";
+
+    const darkmodeNeverActivatedByAction =
+      window.localStorage.getItem("darkmode") === null;
+
+    if (darkmodeActivated === true && options.saveInCookies) {
+      button.classList.add("darkmode-toggle--white");
+      document.body.classList.add("darkmode--activated");
+    }
+
+    document.body.insertBefore(button, document.body.firstChild);
   }
+
+  showWidget() {}
 }
