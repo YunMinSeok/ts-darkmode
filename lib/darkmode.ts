@@ -12,33 +12,6 @@ type optionsType = {
   buttonWidth: string;
   buttonHeight: string;
 };
-
-type cssType ={
-  darkmode-wrap: {
-    background:string;
-    transition: string;
-    transform: string;
-  }
-  darkmode-toggle {
-    background: string;
-    width: string;
-    height: string;
-    position: string;
-    border-radius: string;
-    border:string;
-    right: string;
-    bottom: string;
-    left: string;
-    cursor: string;
-    transition: string;
-    display: string;
-    justify-content: string;
-    align-items: string;
-  }
-  darkmode-toggle--white {
-    background:string;
-  }
-};
 export default class DarkMode {
   constructor(options: optionsType) {
     const defaultOptions = {
@@ -97,11 +70,6 @@ export default class DarkMode {
       button.classList.add("darkmode-toggle--white");
       document.body.classList.add("darkmode--activated");
     }
-    this.addStyle(css);
-
-    document.body.insertBefore(button, document.body.firstChild);
-  }
-  addStyle(css:cssType) {
     const linkElement = document.createElement("link");
 
     linkElement.setAttribute(
@@ -109,6 +77,10 @@ export default class DarkMode {
       "data:text/css;charset=UTF-8," + encodeURIComponent(css)
     );
     document.head.appendChild(linkElement);
+
+    document.body.insertBefore(button, document.body.firstChild);
   }
-  showWidget() {}
+  showWidget() {
+    console.log(1);
+  }
 }
