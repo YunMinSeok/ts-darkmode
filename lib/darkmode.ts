@@ -1,5 +1,3 @@
-const updateCallbacks = [];
-
 function setLocalDarkMode(value: boolean) {
   localStorage.setItem("darkmode-dark", value.toString());
 }
@@ -8,7 +6,7 @@ function getLocalDarkMode(): boolean {
   const localValue = localStorage.getItem("darkmode-dark");
 
   if (!localValue) {
-    return null;
+    return false;
   }
 
   return localValue === "true";
@@ -24,7 +22,7 @@ export function isDark(): boolean {
 export function isDarkLocal(): boolean {
   const localDark = getLocalDarkMode();
 
-  if (localDark === null) {
+  if (!localDark) {
     return isDark();
   }
 
@@ -33,13 +31,9 @@ export function isDarkLocal(): boolean {
 
 export function setDark(isDark: boolean) {
   setLocalDarkMode(isDark);
-
-  updateCallbacks.forEach((cb) => cb(isDark));
 }
 
 export function onUpdate(cb: (isDark: boolean) => void) {
-  updateCallbacks.push(cb);
-
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", () => cb(isDark()));
