@@ -1,1 +1,1 @@
-export declare function isDark(): boolean;
+export { default as DarkMode } from "./darkmode";
