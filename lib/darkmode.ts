@@ -31,7 +31,9 @@ export default class Darkmode {
       buttonWidth: "3rem",
       buttonHeight: "3rem",
     };
+
     options = { ...defaultOptions, ...options };
+
     const css = `
       .darkmode-wrap {
         background: ${options.backgroundColor};
@@ -67,7 +69,7 @@ export default class Darkmode {
 
     if (darkmodeActivated === true) {
       button.classList.add("darkmode-toggle--white");
-      document.body.classList.add("darkmode--activated");
+      document.body.classList.add("darkmode-wrap");
     }
     //add css Style
     const linkElement = document.createElement("link");
@@ -86,7 +88,6 @@ export default class Darkmode {
     const time = parseFloat(this.time) * 1000;
 
     button.classList.add("darkmode-toggle");
-    button.classList.remove("darkmode-toggle--inactive");
     button.setAttribute("aria-label", "Activate dark mode");
     button.setAttribute("aria-checked", "false");
     button.setAttribute("role", "checkbox");
@@ -95,12 +96,12 @@ export default class Darkmode {
       const isDarkmode = this.isActivated();
 
       if (!isDarkmode) {
-        button.setAttribute("disabled", true);
+        button.setAttribute("disabled", "true");
         setTimeout(() => {
           button.removeAttribute("disabled");
         }, time);
       } else {
-        button.setAttribute("disabled", true);
+        button.setAttribute("disabled", "true");
         setTimeout(() => {
           button.removeAttribute("disabled");
         }, 1);
@@ -108,7 +109,21 @@ export default class Darkmode {
 
       button.classList.toggle("darkmode-toggle--white");
       document.body.classList.toggle("darkmode--activated");
-      window.localStorage.setItem("darkmode", !isDarkmode);
+      window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
+  }
+
+  toggle() {
+    const isDarkmode = this.isActivated();
+    const button = this.button;
+
+    document.body.classList.toggle("darkmode--activated");
+    window.localStorage.setItem("darkmode", (!isDarkmode).toString());
+    button.setAttribute("aria-label", "De-activate dark mode");
+    button.setAttribute("aria-checked", "true");
+  }
+
+  isActivated() {
+    return document.body.classList.contains("darkmode--activated");
   }
 }
