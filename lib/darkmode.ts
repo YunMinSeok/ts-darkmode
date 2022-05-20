@@ -64,10 +64,9 @@ export default class Darkmode {
 
     button.innerHTML = options.content;
 
-    const darkmodeActivated =
-      window.localStorage.getItem("darkmode") === "true";
+    const darkmodeActive = window.localStorage.getItem("darkmode") === "true";
 
-    if (darkmodeActivated === true) {
+    if (darkmodeActive === true) {
       button.classList.add("darkmode-toggle--white");
       document.body.classList.add("darkmode-wrap");
     }
@@ -93,7 +92,7 @@ export default class Darkmode {
     button.setAttribute("role", "checkbox");
 
     button.addEventListener("click", () => {
-      const isDarkmode = this.isActivated();
+      const isDarkmode = this.isDarkActived();
 
       if (!isDarkmode) {
         button.setAttribute("disabled", "true");
@@ -114,7 +113,7 @@ export default class Darkmode {
   }
 
   toggle() {
-    const isDarkmode = this.isActivated();
+    const isDarkmode = this.isDarkActived();
     const button = this.button;
 
     document.body.classList.toggle("darkmode--activated");
@@ -123,7 +122,7 @@ export default class Darkmode {
     button.setAttribute("aria-checked", "true");
   }
 
-  isActivated() {
+  isDarkActived() {
     return document.body.classList.contains("darkmode--activated");
   }
 }
