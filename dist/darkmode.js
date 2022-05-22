@@ -31,8 +31,8 @@ var Darkmode = /** @class */ (function () {
         var css = "\n      .darkmode-wrap {\n        background: ".concat(options.backgroundColor, ";\n        transition: all ").concat(options.transitionTime, " ease;\n        transform: ").concat(options.animation, ";\n      }\n      .darkmode-toggle {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n      .darkmode-toggle--white {\n        background: ").concat(options.buttonLightColor, ";\n      }\n    ");
         var button = document.createElement("button");
         button.innerHTML = options.content;
-        var darkmodeActivated = window.localStorage.getItem("darkmode") === "true";
-        if (darkmodeActivated === true) {
+        var darkmodeActive = window.localStorage.getItem("darkmode") === "true";
+        if (darkmodeActive === true) {
             button.classList.add("darkmode-toggle--white");
             document.body.classList.add("darkmode-wrap");
         }
@@ -52,7 +52,7 @@ var Darkmode = /** @class */ (function () {
         button.setAttribute("aria-checked", "false");
         button.setAttribute("role", "checkbox");
         button.addEventListener("click", function () {
-            var isDarkmode = _this.isActivated();
+            var isDarkmode = _this.isDarkActived();
             if (!isDarkmode) {
                 button.setAttribute("disabled", "true");
                 setTimeout(function () {
@@ -71,14 +71,14 @@ var Darkmode = /** @class */ (function () {
         });
     };
     Darkmode.prototype.toggle = function () {
-        var isDarkmode = this.isActivated();
+        var isDarkmode = this.isDarkActived();
         var button = this.button;
         document.body.classList.toggle("darkmode--activated");
         window.localStorage.setItem("darkmode", (!isDarkmode).toString());
         button.setAttribute("aria-label", "De-activate dark mode");
         button.setAttribute("aria-checked", "true");
     };
-    Darkmode.prototype.isActivated = function () {
+    Darkmode.prototype.isDarkActived = function () {
         return document.body.classList.contains("darkmode--activated");
     };
     return Darkmode;

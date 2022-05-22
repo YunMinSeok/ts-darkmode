@@ -18,6 +18,6 @@ export default class Darkmode {
     constructor(options: optionsType);
     showWidget(): void;
     toggle(): void;
-    isActivated(): boolean;
+    isDarkActived(): boolean;
 }
 export {};

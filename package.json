@@ -1,6 +1,6 @@
 {
   "name": "@ysms/ts-darkmode",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A tiny library for handling dark mode on browsers.",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "url": "git+git@github.com:YunMinSeok/darkmodejs.git/issues"
   },
   "homepage": "git+git@github.com:YunMinSeok/darkmodejs.git#readme",
-  "main": "dist/index.d.ts",
+  "main": "dist/darkmode.js",
   "contributors": [
     "yunminseok , kimjelly"
   ],
