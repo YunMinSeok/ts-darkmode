@@ -39,6 +39,7 @@ var Darkmode = /** @class */ (function () {
         //add css Style
         var linkElement = document.createElement("link");
         linkElement.setAttribute("href", "data:text/css;charset=UTF-8," + encodeURIComponent(css));
+        document.body.insertBefore(button, document.body.firstChild);
         document.head.appendChild(linkElement);
         this.button = button;
         this.time = options.transitionTime;

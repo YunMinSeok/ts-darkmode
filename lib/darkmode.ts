@@ -76,6 +76,8 @@ export default class Darkmode {
       "href",
       "data:text/css;charset=UTF-8," + encodeURIComponent(css)
     );
+
+    document.body.insertBefore(button, document.body.firstChild);
     document.head.appendChild(linkElement);
 
     this.button = button;
