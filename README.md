@@ -22,6 +22,15 @@ npm install @ysms/ts-darkmode
 ```
 <!-- e : How to Use -->
 
+<!-- s : Getting started -->
+## 🎯 Getting started
+```js
+import Darkmode from "@ysms/ts-darkmode";
+```
+
+<!-- s : Getting started --> 
+<!-- e : Getting started -->
+
 <!-- s : License -->
 ## 🪄 License
 
