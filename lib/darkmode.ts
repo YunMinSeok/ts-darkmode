@@ -35,11 +35,14 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
-      .darkmode-wrap {
-        background: ${options.backgroundColor};
-        transition: all ${options.transitionTime} ease;
-        transform: ${options.animation};
-      }
+      // .darkmode-wrap {
+      //   position: fixed;
+      //   pointer-events: none;
+      //   background: ${options.backgroundColor};
+      //   transition: all ${options.transitionTime} ease;
+      //   transform: ${options.animation};
+      //   mix-blend-mode: difference;
+      // }
       .darkmode-toggle {
         background: ${options.buttonDarkColor};
         width: ${options.buttonWidth};
@@ -59,7 +62,15 @@ export default class Darkmode {
       .darkmode-toggle--white {
         background: ${options.buttonLightColor};
       }
+      .darkmode--activated{
+        background: ${options.backgroundColor};
+
+      }
+      .darkmode--activated h1,h2,h3,h4,h5,h6,p,span,em,ul,li,ol,dl,dt,dd,b,strong,hr,blockquote{
+          mix-blend-mode: difference;
+      }
     `;
+
     const button = document.createElement("button");
 
     button.innerHTML = options.content;
@@ -68,23 +79,25 @@ export default class Darkmode {
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-toggle--white");
-      document.body.classList.add("darkmode-wrap");
+      // document.body.classList.add("darkmode-wrap");
     }
+
+    document.body.insertBefore(button, document.body.firstChild);
     //add css Style
     const linkElement = document.createElement("link");
+    linkElement.setAttribute("rel", "stylesheet");
+    linkElement.setAttribute("type", "text/css");
     linkElement.setAttribute(
       "href",
       "data:text/css;charset=UTF-8," + encodeURIComponent(css)
     );
-
-    document.body.insertBefore(button, document.body.firstChild);
     document.head.appendChild(linkElement);
 
     this.button = button;
     this.time = options.transitionTime!;
   }
 
-  showWidget() {
+  showWidget = (): void => {
     const button = this.button;
     const time = parseFloat(this.time) * 1000;
 
@@ -112,9 +125,9 @@ export default class Darkmode {
       document.body.classList.toggle("darkmode--activated");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
-  }
+  };
 
-  toggle() {
+  toggle = (): void => {
     const isDarkmode = this.isDarkActived();
     const button = this.button;
 
@@ -122,7 +135,7 @@ export default class Darkmode {
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
-  }
+  };
 
   isDarkActived() {
     return document.body.classList.contains("darkmode--activated");
