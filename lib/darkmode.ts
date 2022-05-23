@@ -85,6 +85,7 @@ export default class Darkmode {
       .darkmode--activated strong,
       .darkmode--activated hr,
       .darkmode--activated blockquote{
+          color : #fff;
           mix-blend-mode: difference;
       }
     `;
