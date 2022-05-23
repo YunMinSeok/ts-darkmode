@@ -66,7 +66,25 @@ export default class Darkmode {
         background: ${options.backgroundColor};
 
       }
-      .darkmode--activated h1,h2,h3,h4,h5,h6,p,span,em,ul,li,ol,dl,dt,dd,b,strong,hr,blockquote{
+      .darkmode--activated h1,
+      .darkmode--activated h2,
+      .darkmode--activated h3,
+      .darkmode--activated h4,
+      .darkmode--activated h5,
+      .darkmode--activated h6,
+      .darkmode--activated p,
+      .darkmode--activated span,
+      .darkmode--activated em,
+      .darkmode--activated ul,
+      .darkmode--activated li,
+      .darkmode--activated ol,
+      .darkmode--activated dl,
+      .darkmode--activated dt,
+      .darkmode--activated dd,
+      .darkmode--activated b,
+      .darkmode--activated strong,
+      .darkmode--activated hr,
+      .darkmode--activated blockquote{
           mix-blend-mode: difference;
       }
     `;
