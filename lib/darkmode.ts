@@ -35,14 +35,6 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
-      // .darkmode-wrap {
-      //   position: fixed;
-      //   pointer-events: none;
-      //   background: ${options.backgroundColor};
-      //   transition: all ${options.transitionTime} ease;
-      //   transform: ${options.animation};
-      //   mix-blend-mode: difference;
-      // }
       .darkmode-toggle {
         background: ${options.buttonDarkColor};
         width: ${options.buttonWidth};
@@ -98,11 +90,10 @@ export default class Darkmode {
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-toggle--white");
-      // document.body.classList.add("darkmode-wrap");
     }
 
     document.body.insertBefore(button, document.body.firstChild);
-    //add css Style
+
     const linkElement = document.createElement("link");
     linkElement.setAttribute("rel", "stylesheet");
     linkElement.setAttribute("type", "text/css");
