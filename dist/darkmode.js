@@ -44,6 +44,7 @@ var Darkmode = /** @class */ (function () {
             var isDarkmode = _this.isDarkActived();
             var button = _this.button;
             document.body.classList.toggle("darkmode--activated");
+            document.body.classList.toggle("darkmode-wrap");
             window.localStorage.setItem("darkmode", (!isDarkmode).toString());
             button.setAttribute("aria-label", "De-activate dark mode");
             button.setAttribute("aria-checked", "true");
@@ -53,26 +54,24 @@ var Darkmode = /** @class */ (function () {
             right: "30px",
             left: "unset",
             transitionTime: "0.3s",
-            backgroundColor: "#121212",
+            backgroundColor: "#fff",
             buttonDarkColor: "#141414",
             buttonLightColor: "#fff",
             content: "",
             saveInCookies: true,
-            animation: "scale(100)",
             buttonWidth: "3rem",
             buttonHeight: "3rem",
         };
         options = __assign(__assign({}, defaultOptions), options);
-        var css = "\n      // .darkmode-wrap {\n      //   position: fixed;\n      //   pointer-events: none;\n      //   background: ".concat(options.backgroundColor, ";\n      //   transition: all ").concat(options.transitionTime, " ease;\n      //   transform: ").concat(options.animation, ";\n      //   mix-blend-mode: difference;\n      // }\n      .darkmode-toggle {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n      .darkmode-toggle--white {\n        background: ").concat(options.buttonLightColor, ";\n      }\n      .darkmode--activated{\n        background: ").concat(options.backgroundColor, ";\n\n      }\n      .darkmode--activated h1,\n      .darkmode--activated h2,\n      .darkmode--activated h3,\n      .darkmode--activated h4,\n      .darkmode--activated h5,\n      .darkmode--activated h6,\n      .darkmode--activated p,\n      .darkmode--activated span,\n      .darkmode--activated em,\n      .darkmode--activated ul,\n      .darkmode--activated li,\n      .darkmode--activated ol,\n      .darkmode--activated dl,\n      .darkmode--activated dt,\n      .darkmode--activated dd,\n      .darkmode--activated b,\n      .darkmode--activated strong,\n      .darkmode--activated hr,\n      .darkmode--activated blockquote{\n          mix-blend-mode: difference;\n      }\n    ");
+        var css = "\n      .darkmode-wrap {\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background : ".concat(options.backgroundColor, "\n        z-index: -10;\n        pointer-events: none;\n      }\n\n      .darkmode-toggle {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n      .darkmode-toggle--white {\n        background: ").concat(options.buttonLightColor, ";\n      }\n      .darkmode--activated{\n        background: ").concat(options.backgroundColor, ";\n      }\n      img, .darkmode-ignore {\n        isolation: isolate;\n        display: inline-block;\n      }\n    ");
         var button = document.createElement("button");
         button.innerHTML = options.content;
         var darkmodeActive = window.localStorage.getItem("darkmode") === "true";
         if (darkmodeActive === true) {
             button.classList.add("darkmode-toggle--white");
-            // document.body.classList.add("darkmode-wrap");
+            document.body.classList.add("darkmode-wrap");
         }
         document.body.insertBefore(button, document.body.firstChild);
-        //add css Style
         var linkElement = document.createElement("link");
         linkElement.setAttribute("rel", "stylesheet");
         linkElement.setAttribute("type", "text/css");

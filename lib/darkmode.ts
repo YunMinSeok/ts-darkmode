@@ -8,7 +8,6 @@ interface optionsType {
   buttonLightColor?: string;
   content: string;
   saveInCookies?: boolean;
-  animation?: string;
   buttonWidth?: string;
   buttonHeight?: string;
 }
@@ -22,12 +21,11 @@ export default class Darkmode {
       right: "30px",
       left: "unset",
       transitionTime: "0.3s",
-      backgroundColor: "#121212",
+      backgroundColor: "#fff",
       buttonDarkColor: "#141414",
       buttonLightColor: "#fff",
       content: "",
       saveInCookies: true,
-      animation: "scale(100)",
       buttonWidth: "3rem",
       buttonHeight: "3rem",
     };
@@ -35,6 +33,18 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
+      .darkmode-wrap {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background : ${options.backgroundColor}
+        z-index: -10;
+        pointer-events: none;
+        mix-blend-mode: difference;
+      }
+
       .darkmode-toggle {
         background: ${options.buttonDarkColor};
         width: ${options.buttonWidth};
@@ -56,29 +66,10 @@ export default class Darkmode {
       }
       .darkmode--activated{
         background: ${options.backgroundColor};
-
       }
-      .darkmode--activated h1,
-      .darkmode--activated h2,
-      .darkmode--activated h3,
-      .darkmode--activated h4,
-      .darkmode--activated h5,
-      .darkmode--activated h6,
-      .darkmode--activated p,
-      .darkmode--activated span,
-      .darkmode--activated em,
-      .darkmode--activated ul,
-      .darkmode--activated li,
-      .darkmode--activated ol,
-      .darkmode--activated dl,
-      .darkmode--activated dt,
-      .darkmode--activated dd,
-      .darkmode--activated b,
-      .darkmode--activated strong,
-      .darkmode--activated hr,
-      .darkmode--activated blockquote{
-          color : #fff;
-          mix-blend-mode: difference;
+      img, .darkmode-ignore {
+        isolation: isolate;
+        display: inline-block;
       }
     `;
 
@@ -90,6 +81,7 @@ export default class Darkmode {
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-toggle--white");
+      document.body.classList.add("darkmode-wrap");
     }
 
     document.body.insertBefore(button, document.body.firstChild);
@@ -142,6 +134,7 @@ export default class Darkmode {
     const button = this.button;
 
     document.body.classList.toggle("darkmode--activated");
+    document.body.classList.toggle("darkmode-wrap");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");

@@ -8,7 +8,6 @@ interface optionsType {
     buttonLightColor?: string;
     content: string;
     saveInCookies?: boolean;
-    animation?: string;
     buttonWidth?: string;
     buttonHeight?: string;
 }
