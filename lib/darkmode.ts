@@ -13,6 +13,7 @@ interface optionsType {
 }
 
 export default class Darkmode {
+  layer: HTMLDivElement;
   button: HTMLButtonElement;
   time: string;
   constructor(options: optionsType) {
@@ -33,7 +34,7 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
-      .darkmode-wrap {
+      .darkmode-wrap{
         position: fixed;
         top: 0;
         left: 0;
@@ -72,7 +73,7 @@ export default class Darkmode {
         display: inline-block;
       }
     `;
-
+    const layer = document.createElement("div");
     const button = document.createElement("button");
 
     button.innerHTML = options.content;
@@ -81,10 +82,12 @@ export default class Darkmode {
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-toggle--white");
-      document.body.classList.add("darkmode-wrap");
+      layer.classList.add("darkmode-wrap");
+      document.body.classList.add("darkmode--activated");
     }
 
     document.body.insertBefore(button, document.body.firstChild);
+    document.body.insertBefore(layer, document.body.firstChild);
 
     const linkElement = document.createElement("link");
     linkElement.setAttribute("rel", "stylesheet");
@@ -95,11 +98,13 @@ export default class Darkmode {
     );
     document.head.appendChild(linkElement);
 
+    this.layer = layer;
     this.button = button;
     this.time = options.transitionTime!;
   }
 
   showWidget = (): void => {
+    const layer = this.layer;
     const button = this.button;
     const time = parseFloat(this.time) * 1000;
 
@@ -125,16 +130,18 @@ export default class Darkmode {
 
       button.classList.toggle("darkmode-toggle--white");
       document.body.classList.toggle("darkmode--activated");
+      layer.classList.toggle("darkmode-wrap");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
   };
 
   toggle = (): void => {
     const isDarkmode = this.isDarkActived();
+    const layer = this.layer;
     const button = this.button;
 
     document.body.classList.toggle("darkmode--activated");
-    document.body.classList.toggle("darkmode-wrap");
+    layer.classList.toggle("darkmode-wrap");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
