@@ -78,7 +78,6 @@ export default class Darkmode {
 
     const layer = document.createElement("div");
     const button = document.createElement("button");
-    const test = document.createElement("div");
 
     button.innerHTML = options.content;
 
@@ -92,7 +91,6 @@ export default class Darkmode {
 
     document.body.insertBefore(button, document.body.firstChild);
     document.body.insertBefore(layer, document.body.firstChild);
-    document.body.insertBefore(test, document.body.firstChild);
 
     const linkElement = document.createElement("link");
     linkElement.setAttribute("rel", "stylesheet");

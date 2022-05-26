@@ -69,7 +69,6 @@ var Darkmode = /** @class */ (function () {
         var css = "\n      .darkmode-wrap{\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background : ".concat(options.backgroundColor, ";\n        pointer-events: none;\n        mix-blend-mode: difference;\n      }\n\n      .darkmode-toggle {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n\n      .darkmode-toggle--white {\n        background: ").concat(options.buttonLightColor, ";\n      }\n\n      .darkmode--activated{\n        background: ").concat(options.backgroundColor, ";\n      }\n\n      img, .darkmode-ignore {\n        isolation: isolate;\n        display: inline-block;\n      }\n    ");
         var layer = document.createElement("div");
         var button = document.createElement("button");
-        var test = document.createElement("div");
         button.innerHTML = options.content;
         var darkmodeActive = window.localStorage.getItem("darkmode") === "true";
         if (darkmodeActive === true) {
@@ -79,7 +78,6 @@ var Darkmode = /** @class */ (function () {
         }
         document.body.insertBefore(button, document.body.firstChild);
         document.body.insertBefore(layer, document.body.firstChild);
-        document.body.insertBefore(test, document.body.firstChild);
         var linkElement = document.createElement("link");
         linkElement.setAttribute("rel", "stylesheet");
         linkElement.setAttribute("type", "text/css");
