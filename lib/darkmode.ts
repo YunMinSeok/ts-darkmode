@@ -13,9 +13,9 @@ interface optionsType {
 }
 
 export default class Darkmode {
-  layer: HTMLDivElement;
-  button: HTMLButtonElement;
-  time: string;
+  declare layer: HTMLDivElement;
+  declare button: HTMLButtonElement;
+  declare time: string;
   constructor(options: optionsType) {
     const defaultOptions = {
       bottom: "30px",
@@ -40,8 +40,7 @@ export default class Darkmode {
         left: 0;
         width: 100%;
         height: 100%;
-        background : ${options.backgroundColor}
-        z-index: -10;
+        background : ${options.backgroundColor};
         pointer-events: none;
         mix-blend-mode: difference;
       }

@@ -12,6 +12,7 @@ interface optionsType {
     buttonHeight?: string;
 }
 export default class Darkmode {
+    layer: HTMLDivElement;
     button: HTMLButtonElement;
     time: string;
     constructor(options: optionsType);
