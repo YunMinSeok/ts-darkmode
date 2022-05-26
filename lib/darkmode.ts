@@ -13,9 +13,9 @@ interface optionsType {
 }
 
 export default class Darkmode {
-  declare layer: HTMLDivElement;
-  declare button: HTMLButtonElement;
-  declare time: string;
+  layer: HTMLDivElement;
+  button: HTMLButtonElement;
+  time: string;
   constructor(options: optionsType) {
     const defaultOptions = {
       bottom: "30px",
@@ -61,19 +61,24 @@ export default class Darkmode {
         justify-content: center;
         align-items: center;
       }
+
       .darkmode-toggle--white {
         background: ${options.buttonLightColor};
       }
+
       .darkmode--activated{
         background: ${options.backgroundColor};
       }
+
       img, .darkmode-ignore {
         isolation: isolate;
         display: inline-block;
       }
     `;
+
     const layer = document.createElement("div");
     const button = document.createElement("button");
+    const test = document.createElement("div");
 
     button.innerHTML = options.content;
 
@@ -87,6 +92,7 @@ export default class Darkmode {
 
     document.body.insertBefore(button, document.body.firstChild);
     document.body.insertBefore(layer, document.body.firstChild);
+    document.body.insertBefore(test, document.body.firstChild);
 
     const linkElement = document.createElement("link");
     linkElement.setAttribute("rel", "stylesheet");
@@ -128,8 +134,8 @@ export default class Darkmode {
       }
 
       button.classList.toggle("darkmode-toggle--white");
-      document.body.classList.toggle("darkmode--activated");
       layer.classList.toggle("darkmode-wrap");
+      document.body.classList.toggle("darkmode--activated");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
   };
@@ -139,8 +145,8 @@ export default class Darkmode {
     const layer = this.layer;
     const button = this.button;
 
-    document.body.classList.toggle("darkmode--activated");
     layer.classList.toggle("darkmode-wrap");
+    document.body.classList.toggle("darkmode--activated");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
