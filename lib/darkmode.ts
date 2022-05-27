@@ -62,7 +62,7 @@ export default class Darkmode {
         align-items: center;
       }
 
-      .darkmode-toggle--white {
+      .darkmode-toggle-whiteType {
         background: ${options.buttonLightColor};
       }
 
@@ -84,7 +84,7 @@ export default class Darkmode {
     const darkmodeActive = window.localStorage.getItem("darkmode") === "true";
 
     if (darkmodeActive === true) {
-      button.classList.add("darkmode-toggle--white");
+      button.classList.add("darkmode-toggle-whiteType");
       layer.classList.add("darkmode-wrap");
       document.body.classList.add("darkmode--activated");
     }
@@ -131,7 +131,7 @@ export default class Darkmode {
         }, 1);
       }
 
-      button.classList.toggle("darkmode-toggle--white");
+      button.classList.toggle("darkmode-toggle-whiteType");
       layer.classList.toggle("darkmode-wrap");
       document.body.classList.toggle("darkmode--activated");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
