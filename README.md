@@ -14,22 +14,28 @@
 </div>
 <!-- e : introduce -->
 
-<!-- s : How to Use -->
-## 🎓 How to Use
+<!-- s : Getting started -->
+## 🎯 Getting started
+
+<h3>Install</h3>
 
 ```sh
 npm install @ysms/ts-darkmode
 ```
-<!-- e : How to Use -->
 
-<!-- s : Getting started -->
-## 🎯 Getting started
+<h3>Import</h3>
+
 ```js
 import Darkmode from "@ysms/ts-darkmode";
 ```
-
-<!-- s : Getting started --> 
 <!-- e : Getting started -->
+
+<!-- s : How to Use -->
+## 👀 How to use
+
+
+<!-- e :How to Use--> 
+
 
 <!-- s : License -->
 ## 🪄 License
