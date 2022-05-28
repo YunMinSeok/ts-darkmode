@@ -34,7 +34,7 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
-      .darkmode-wrap{
+      .darkmode-container{
         position: fixed;
         top: 0;
         left: 0;
@@ -45,7 +45,7 @@ export default class Darkmode {
         mix-blend-mode: difference;
       }
 
-      .darkmode-toggle {
+      .darkmode-button {
         background: ${options.buttonDarkColor};
         width: ${options.buttonWidth};
         height: ${options.buttonHeight};
@@ -62,11 +62,11 @@ export default class Darkmode {
         align-items: center;
       }
 
-      .darkmode-toggle-whiteType {
+      .darkmode-button-whiteType {
         background: ${options.buttonLightColor};
       }
 
-      .darkmode--activated{
+      .darkmode-activated{
         background: ${options.backgroundColor};
       }
 
@@ -84,9 +84,9 @@ export default class Darkmode {
     const darkmodeActive = window.localStorage.getItem("darkmode") === "true";
 
     if (darkmodeActive === true) {
-      button.classList.add("darkmode-toggle-whiteType");
-      layer.classList.add("darkmode-wrap");
-      document.body.classList.add("darkmode--activated");
+      button.classList.add("darkmode-button-whiteType");
+      layer.classList.add("darkmode-container");
+      document.body.classList.add("darkmode-activated");
     }
 
     document.body.insertBefore(button, document.body.firstChild);
@@ -106,18 +106,18 @@ export default class Darkmode {
     this.time = options.transitionTime!;
   }
 
-  showWidget = (): void => {
+  activeDark = (): void => {
     const layer = this.layer;
     const button = this.button;
     const time = parseFloat(this.time) * 1000;
 
-    button.classList.add("darkmode-toggle");
+    button.classList.add("darkmode-button");
     button.setAttribute("aria-label", "Activate dark mode");
     button.setAttribute("aria-checked", "false");
     button.setAttribute("role", "checkbox");
 
     button.addEventListener("click", () => {
-      const isDarkmode = this.isDarkActived();
+      const isDarkmode = this.isActiveDark();
 
       if (!isDarkmode) {
         button.setAttribute("disabled", "true");
@@ -131,26 +131,26 @@ export default class Darkmode {
         }, 1);
       }
 
-      button.classList.toggle("darkmode-toggle-whiteType");
-      layer.classList.toggle("darkmode-wrap");
-      document.body.classList.toggle("darkmode--activated");
+      button.classList.toggle("darkmode-button-whiteType");
+      layer.classList.toggle("darkmode-container");
+      document.body.classList.toggle("darkmode-activated");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
   };
 
   toggle = (): void => {
-    const isDarkmode = this.isDarkActived();
+    const isDarkmode = this.isActiveDark();
     const layer = this.layer;
     const button = this.button;
 
-    layer.classList.toggle("darkmode-wrap");
-    document.body.classList.toggle("darkmode--activated");
+    layer.classList.toggle("darkmode-container");
+    document.body.classList.toggle("darkmode-activated");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
   };
 
-  isDarkActived() {
-    return document.body.classList.contains("darkmode--activated");
+  isActiveDark() {
+    return document.body.classList.contains("darkmode-activated");
   }
 }
