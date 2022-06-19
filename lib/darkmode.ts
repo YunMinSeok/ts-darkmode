@@ -34,15 +34,18 @@ export default class Darkmode {
     options = { ...defaultOptions, ...options };
 
     const css = `
+    .darkmode-layer{
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      mix-blend-mode: difference;
+      transition : all 0.5s ease;
+    }
       .darkmode-container{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
         background : ${options.backgroundColor};
-        pointer-events: none;
-        mix-blend-mode: difference;
       }
 
       .darkmode-button {
@@ -82,6 +85,7 @@ export default class Darkmode {
     button.innerHTML = options.content;
 
     const darkmodeActive = window.localStorage.getItem("darkmode") === "true";
+    layer.classList.add("darkmode-layer");
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-button-whiteType");
