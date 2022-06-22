@@ -46,7 +46,7 @@ import Darkmode from "@ysms/ts-darkmode";
 
 ## 🌈 Setting Options
 
-* You can custom settings
+<h3>You can custom settings</h3>
 
 ```js
 // it's all default value
@@ -67,7 +67,7 @@ import Darkmode from "@ysms/ts-darkmode";
 
 <br/><br/>
 
-* If you want to ignore Darkmode
+<h3>If you want to ignore Darkmode</h3>
 ```html
 <!-- add 'darkmode-ignore' class-->
 <div class="darkmode-ignore"><img href="@@@"></div>
