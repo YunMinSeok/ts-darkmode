@@ -68,6 +68,7 @@ import Darkmode from "@ysms/ts-darkmode";
 <br/><br/>
 
 <h3>If you want to ignore Darkmode</h3>
+
 ```html
 <!-- add 'darkmode-ignore' class-->
 <div class="darkmode-ignore"><img href="@@@"></div>
