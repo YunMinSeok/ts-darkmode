@@ -42,7 +42,7 @@ export default class Darkmode {
       height: 100%;
       pointer-events: none;
       mix-blend-mode: difference;
-      transition : all 0.5s ease;
+      transition : all ${options.transitionTime} ease;
     }
       .darkmode-container{
         background : ${options.backgroundColor};
@@ -59,7 +59,7 @@ export default class Darkmode {
         bottom: ${options.bottom};
         left: ${options.left};
         cursor: pointer;
-        transition: all 0.5s ease;
+        transition: all ${options.transitionTime} ease;
         display: flex;
         justify-content: center;
         align-items: center;
