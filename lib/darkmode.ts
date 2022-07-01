@@ -69,7 +69,7 @@ export default class Darkmode {
         background: ${options.buttonLightColor};
       }
 
-      .darkmode-activated{
+      .darkmode-body-color{
         background: ${options.backgroundColor};
       }
 
@@ -86,11 +86,11 @@ export default class Darkmode {
 
     const darkmodeActive = window.localStorage.getItem("darkmode") === "true";
     layer.classList.add("darkmode-layer");
+    document.body.classList.add("darkmode-body-color");
 
     if (darkmodeActive === true) {
       button.classList.add("darkmode-button-whiteType");
       layer.classList.add("darkmode-container");
-      document.body.classList.add("darkmode-activated");
     }
 
     document.body.insertBefore(button, document.body.firstChild);
@@ -137,7 +137,7 @@ export default class Darkmode {
 
       button.classList.toggle("darkmode-button-whiteType");
       layer.classList.toggle("darkmode-container");
-      document.body.classList.toggle("darkmode-activated");
+      // document.body.classList.toggle("darkmode-body-color");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
   };
@@ -148,13 +148,13 @@ export default class Darkmode {
     const button = this.button;
 
     layer.classList.toggle("darkmode-container");
-    document.body.classList.toggle("darkmode-activated");
+    // document.body.classList.toggle("darkmode-body-color");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
   };
 
   isActiveDark() {
-    return document.body.classList.contains("darkmode-activated");
+    return document.body.classList.contains("darkmode-container");
   }
 }
