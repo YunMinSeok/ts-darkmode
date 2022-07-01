@@ -14,16 +14,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Darkmode = /** @class */ (function () {
     function Darkmode(options) {
         var _this = this;
-        this.showWidget = function () {
+        this.activeDark = function () {
             var layer = _this.layer;
             var button = _this.button;
             var time = parseFloat(_this.time) * 1000;
-            button.classList.add("darkmode-toggle");
+            button.classList.add("darkmode-button");
             button.setAttribute("aria-label", "Activate dark mode");
             button.setAttribute("aria-checked", "false");
             button.setAttribute("role", "checkbox");
             button.addEventListener("click", function () {
-                var isDarkmode = _this.isDarkActived();
+                var isDarkmode = _this.isActiveDark();
                 if (!isDarkmode) {
                     button.setAttribute("disabled", "true");
                     setTimeout(function () {
@@ -36,18 +36,18 @@ var Darkmode = /** @class */ (function () {
                         button.removeAttribute("disabled");
                     }, 1);
                 }
-                button.classList.toggle("darkmode-toggle--white");
-                layer.classList.toggle("darkmode-wrap");
-                document.body.classList.toggle("darkmode--activated");
+                button.classList.toggle("darkmode-button-whiteType");
+                layer.classList.toggle("darkmode-container");
+                document.body.classList.toggle("darkmode-activated");
                 window.localStorage.setItem("darkmode", (!isDarkmode).toString());
             });
         };
         this.toggle = function () {
-            var isDarkmode = _this.isDarkActived();
+            var isDarkmode = _this.isActiveDark();
             var layer = _this.layer;
             var button = _this.button;
-            layer.classList.toggle("darkmode-wrap");
-            document.body.classList.toggle("darkmode--activated");
+            layer.classList.toggle("darkmode-container");
+            document.body.classList.toggle("darkmode-activated");
             window.localStorage.setItem("darkmode", (!isDarkmode).toString());
             button.setAttribute("aria-label", "De-activate dark mode");
             button.setAttribute("aria-checked", "true");
@@ -66,15 +66,15 @@ var Darkmode = /** @class */ (function () {
             buttonHeight: "3rem",
         };
         options = __assign(__assign({}, defaultOptions), options);
-        var css = "\n      .darkmode-wrap{\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background : ".concat(options.backgroundColor, ";\n        pointer-events: none;\n        mix-blend-mode: difference;\n      }\n\n      .darkmode-toggle {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n\n      .darkmode-toggle--white {\n        background: ").concat(options.buttonLightColor, ";\n      }\n\n      .darkmode--activated{\n        background: ").concat(options.backgroundColor, ";\n      }\n\n      img, .darkmode-ignore {\n        isolation: isolate;\n        display: inline-block;\n      }\n    ");
+        var css = "\n      .darkmode-container{\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background : ".concat(options.backgroundColor, ";\n        pointer-events: none;\n        mix-blend-mode: difference;\n      }\n\n      .darkmode-button {\n        background: ").concat(options.buttonDarkColor, ";\n        width: ").concat(options.buttonWidth, ";\n        height: ").concat(options.buttonHeight, ";\n        position: fixed;\n        border-radius: 50%;\n        border:none;\n        right: ").concat(options.right, ";\n        bottom: ").concat(options.bottom, ";\n        left: ").concat(options.left, ";\n        cursor: pointer;\n        transition: all 0.5s ease;\n        display: flex;\n        justify-content: center;\n        align-items: center;\n      }\n\n      .darkmode-button-whiteType {\n        background: ").concat(options.buttonLightColor, ";\n      }\n\n      .darkmode-activated{\n        background: ").concat(options.backgroundColor, ";\n      }\n\n      img, .darkmode-ignore {\n        isolation: isolate;\n        display: inline-block;\n      }\n    ");
         var layer = document.createElement("div");
         var button = document.createElement("button");
         button.innerHTML = options.content;
         var darkmodeActive = window.localStorage.getItem("darkmode") === "true";
         if (darkmodeActive === true) {
-            button.classList.add("darkmode-toggle--white");
-            layer.classList.add("darkmode-wrap");
-            document.body.classList.add("darkmode--activated");
+            button.classList.add("darkmode-button-whiteType");
+            layer.classList.add("darkmode-container");
+            document.body.classList.add("darkmode-activated");
         }
         document.body.insertBefore(button, document.body.firstChild);
         document.body.insertBefore(layer, document.body.firstChild);
@@ -87,8 +87,8 @@ var Darkmode = /** @class */ (function () {
         this.button = button;
         this.time = options.transitionTime;
     }
-    Darkmode.prototype.isDarkActived = function () {
-        return document.body.classList.contains("darkmode--activated");
+    Darkmode.prototype.isActiveDark = function () {
+        return document.body.classList.contains("darkmode-activated");
     };
     return Darkmode;
 }());

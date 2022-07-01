@@ -16,8 +16,8 @@ export default class Darkmode {
     button: HTMLButtonElement;
     time: string;
     constructor(options: optionsType);
-    showWidget: () => void;
+    activeDark: () => void;
     toggle: () => void;
-    isDarkActived(): boolean;
+    isActiveDark(): boolean;
 }
 export {};
