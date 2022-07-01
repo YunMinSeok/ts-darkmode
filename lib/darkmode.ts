@@ -21,7 +21,7 @@ export default class Darkmode {
       bottom: "30px",
       right: "30px",
       left: "unset",
-      transitionTime: "0.3s",
+      transitionTime: "0.5s",
       backgroundColor: "#fff",
       buttonDarkColor: "#141414",
       buttonLightColor: "#fff",
@@ -137,7 +137,6 @@ export default class Darkmode {
 
       button.classList.toggle("darkmode-button-whiteType");
       layer.classList.toggle("darkmode-container");
-      // document.body.classList.toggle("darkmode-body-color");
       window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     });
   };
@@ -148,7 +147,6 @@ export default class Darkmode {
     const button = this.button;
 
     layer.classList.toggle("darkmode-container");
-    // document.body.classList.toggle("darkmode-body-color");
     window.localStorage.setItem("darkmode", (!isDarkmode).toString());
     button.setAttribute("aria-label", "De-activate dark mode");
     button.setAttribute("aria-checked", "true");
